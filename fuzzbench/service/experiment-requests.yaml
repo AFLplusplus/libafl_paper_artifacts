@@ -1,0 +1,2417 @@
+# Experiment requests have the following format:
+#
+# - experiment: 2020-06-08  # The name of the experiment
+#   fuzzers:  # The fuzzers to run in the experiment.
+#     - aflplusplus
+#     - libfuzzer
+#   description: "Explain the intent of the experiment"
+#   # type: bug  # Set to use bug based benchmarks, otherwise coverage (default).
+#   # oss-fuzz-corpus: true  # Set to use latest saturated corpora from OSS-Fuzz.
+#
+# The name of the experiment must begin with a date using this format:
+# YYYY-MM-DD (year-month-day). It's not important what timezone is used in
+# deciding the date or if this is a day or two off. The most important thing is
+# that is unique.
+# If there already is an experiment for a particular date in this file, you can
+# either: add a suffix (e.g. "-aflplusplus" or "-2") to the experiment name, or
+# use the next date.
+#
+# You can run "make presubmit" to do basic validation on this file.
+# Please add new experiment requests towards the top of this file.
+#
+
+- experiment: 2022-03-04-grammar
+  description: "test grammar fuzzers"
+  type: bug
+  fuzzers:
+    - nautilus
+    - gramatron
+    - grimoire
+    - token_level
+  benchmarks:
+    - quickjs_eval-2020-01-05
+    - php_php-fuzz-execute
+    - mruby-2018-05-23
+
+- experiment: 2022-02-25-libfuzzer-variants
+  description: "Requesting experiment on variants of libfuzzer."
+  fuzzers:    
+    - libfuzzer
+    - entropic
+    - libfuzzer_exeute_final
+    - entropic_execute_final
+    - honggfuzz
+    - aflplusplus
+    - eclipser
+    - aflsmart
+    - afl
+    - aflfast
+    - fairfuzz
+
+- experiment: 2022-02-15-grammar
+  description: "test grammar fuzzers"
+  type: bug
+  fuzzers:
+    - nautilus
+    - gramatron
+    - grimoire
+    - token_level
+  benchmarks:
+    - quickjs_eval-2020-01-05
+    - php_php-fuzz-execute
+    - mruby-2018-05-23
+ 
+- experiment: 2022-02-18-aflpp
+  description: "afl++ frida tests"
+  fuzzers:
+    - aflplusplus_qemu
+    - aflplusplus_frida
+    - aflplusplus_frida_cache
+    - aflplusplus
+
+- experiment: 2022-02-15-main-fuzzers
+  description: "evaluate up-to-date version of main fuzzers"
+  fuzzers:
+    - honggfuzz
+    - aflplusplus
+    - eclipser
+    - entropic
+    - libfuzzer
+    - aflsmart
+    - lafintel
+    - afl
+    - mopt
+    - aflfast
+    - fairfuzz
+
+- experiment: 2022-02-15-aflpp
+  description: "afl++ frida tests"
+  fuzzers:
+    - aflplusplus_qemu
+    - aflplusplus_frida
+    - aflplusplus_frida_sup
+    - aflplusplus_frida_inst
+    - aflplusplus_frida_cmov
+    - aflplusplus_frida_cache
+
+- experiment: 2022-01-27-libafl
+  description: "libafl text test"
+  fuzzers:
+    - libafl
+    - libafl_old
+    - libafl_text
+    - aflplusplus
+    - honggfuzz
+    - entropic
+
+- experiment: 2022-01-17-afl-culling-bug
+  description: "afl without corpus culling eval"
+  type: bug
+  fuzzers:
+    - afl
+    - afl_no_culling
+
+- experiment: 2022-01-15-aflpp
+  description: "afl++ test new classify implementation"
+  type: bug
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_tmp
+
+- experiment: 2022-01-07-aflpp-collisions
+  description: "afl++ edge collision impact on bug finding"
+  type: bug
+  fuzzers:
+    - aflplusplus_pcguard
+    - aflplusplus_classic
+
+- experiment: 2021-12-27-aflpp
+  description: "afl++ test"
+  fuzzers:
+    - aflplusplus_havoc1
+    - aflplusplus_havoc11
+    - aflplusplus_havoc2
+    - aflplusplus_havoc22
+    - aflplusplus_qemu
+    - aflplusplus_frida
+
+- experiment: 2021-12-17-afl-edges
+  description: "afl edge coverage only eval"
+  fuzzers:
+    - afl
+    - afl_edges
+
+- experiment: 2021-12-25-libaflpp
+  description: "afl++ + libafl test"
+  fuzzers:
+    - aflplusplus_optimal
+    - aflplusplus
+    - libafl
+    - entropic
+    - honggfuzz
+    - afl
+    - aflplusplus_qemu
+    - aflplusplus_frida
+
+- experiment: 2021-12-17-afl-edges-bug
+  description: "afl edge coverage only eval"
+  type: bug
+  fuzzers:
+    - afl
+    - afl_edges
+
+- experiment: 2021-12-16-afl-fitness-bug
+  description: "afl fitness mode eval"
+  type: bug
+  fuzzers:
+    - afl
+    - afl_fitness
+    - afl_fitness_only
+
+- experiment: 2021-12-15-libafl
+  description: "afl++ + libafl test"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_dfl
+    - aflplusplus_class
+    - libafl_marc
+    - libafl_gsoc
+    - libafl_dfl
+    - afl
+    - afl_marc
+    - entropic
+    - honggfuzz
+
+- experiment: 2021-12-14-fafuzzer
+  description: "Evaluate fuzzer effectiveness on fafuzz and other fuzzers"
+  fuzzers:
+    - fafuzz
+    - afl_2_52_b
+    - mopt
+
+- experiment: 2021-12-13-libafl
+  description: "libaf test"
+  fuzzers:
+    - libafl
+    - libafl_marc
+
+- experiment: 2021-12-09-aflpp
+  description: "afl++ enhancements"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_dfl
+    - aflplusplus_more
+    - aflplusplus_andrea1
+    - aflplusplus_andrea2
+
+- experiment: 2021-12-06-fafuzzer
+  description: "Evaluate fuzzer effectiveness on fafuzz and other fuzzers"
+  fuzzers:
+    - fafuzz
+    - afl
+    - mopt
+
+- experiment: 2021-12-01-aflpp
+  description: "afl++ enhancements"
+  fuzzers:
+    - aflplusplus_dfl
+    - aflplusplus_sat
+    - aflplusplus_more
+
+- experiment: 2021-11-26-aflpp
+  description: "afl++ regression tests"
+  fuzzers:
+    - aflplusplus_r0
+    - aflplusplus_r1
+    - aflplusplus_r2
+    - aflplusplus_r3
+    - aflplusplus_r4
+    - entropic
+    - honggfuzz
+
+- experiment: 2021-11-22-aflbb
+  description: "Evaluate fuzzer effectiveness in blackbox mode - experiment 2"
+  fuzzers:
+    - pythia_bb
+    - afl
+
+- experiment: 2021-11-22-aflpp
+  description: "afl++ + libafl tests"
+  fuzzers:
+    - aflplusplus_qemu
+    - aflplusplus_frida
+    - aflplusplus_frida_orig
+    - libafl
+    - libafl_gsoc
+    - aflplusplus
+    - honggfuzz
+    - entropic
+
+- experiment: 2021-11-22-zafl-bug
+  description: "Compare Zafl to standard source-only and binary-only fuzzers (bug)."
+  type: bug
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_dict2file
+    - aflplusplus_cmplog
+    - aflplusplus_zafl
+    - aflplusplus_tracepc
+    - aflplusplus_qemu_tracepc
+    - aflplusplus_qemu
+
+- experiment: 2021-11-18-zafl-cov
+  description: "Compare Zafl to standard source-only and binary-only fuzzers (coverage)."
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_dict2file
+    - aflplusplus_cmplog
+    - aflplusplus_zafl
+    - aflplusplus_tracepc
+    - aflplusplus_qemu_tracepc
+    - aflplusplus_qemu
+
+- experiment: 2021-11-19-aflpp
+  description: "afl++ + libafl tests"
+  fuzzers:
+    - aflplusplus_qemu
+    - aflplusplus_frida
+    - aflplusplus_frida_orig
+    - libafl
+    - libafl_gsoc
+    - aflplusplus
+    - honggfuzz
+    - entropic
+
+- experiment: 2021-11-18-bug
+  description: "Compare Zafl to standard source-only and binary-only fuzzers (bug)."
+  type: bug
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_dict2file
+    - aflplusplus_cmplog
+    - aflplusplus_zafl
+    - aflplusplus_tracepc
+    - aflplusplus_qemu_tracepc
+    - aflplusplus_qemu
+
+- experiment: 2021-11-18-coverage
+  description: "Compare Zafl to standard source-only and binary-only fuzzers (coverage)."
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_dict2file
+    - aflplusplus_cmplog
+    - aflplusplus_zafl
+    - aflplusplus_tracepc
+    - aflplusplus_qemu_tracepc
+    - aflplusplus_qemu
+
+- experiment: 2021-11-16-aflbb
+  description: "Evaluate fuzzer effectiveness in blackbox mode - experiment 2"
+  fuzzers:
+    - pythia_bb
+    - afl
+
+- experiment: 2021-11-09-aflpp
+  description: "afl++ binary-only"
+  fuzzers:
+    - aflplusplus_qemu
+    - aflplusplus_qemu_orig
+    - aflplusplus_frida
+    - aflplusplus_frida_orig
+    - aflplusplus_frida_preperf
+
+- experiment: 2021-11-07-aflpp
+  description: "afl++"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_qemu
+    - aflplusplus_orig
+    - aflplusplus_qemu_orig
+    - aflplusplus_314
+    - aflplusplus_313
+    - entropic
+    - honggfuzz
+
+- experiment: 2021-11-03-aflpp
+  description: "afl++"
+  fuzzers:
+    - aflplusplus_cmplog_2dictl
+    - aflplusplus_cmplog0
+    - aflplusplus_cmplogo1
+    - aflplusplus_cmplogo2
+    - aflplusplus_cmplogo3
+    - aflplusplus_cmplogo3orig
+    - aflplusplus_cmplog_inst
+    - aflplusplus
+    - aflplusplus_qemu
+    - aflplusplus_frida_huge
+    - aflplusplus_frida_huge2
+
+- experiment: 2021-10-29
+  description: "Compare Zafl to standard source-only and binary-only fuzzers."
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_zafl
+    - aflplusplus_tracepc
+    - aflplusplus_qemu_tracepc
+    - aflplusplus_qemu
+
+- experiment: 2021-11-01-aflpp
+  description: "afl++"
+  fuzzers:
+    - aflplusplus_cmplog_2dictl
+    - aflplusplus_cmplog0
+    - aflplusplus_cmplogo1
+    - aflplusplus_cmplogo2
+    - aflplusplus_cmplogo3
+    - aflplusplus_cmplog_inst
+    - aflplusplus
+    - aflplusplus_qemu
+    - aflplusplus_frida
+    - aflplusplus_frida_huge
+    - aflplusplus_frida_huge2
+
+- experiment: 2021-10-29-aflpp
+  description: "afl++"
+  fuzzers:
+    - aflplusplus_cmplogo0
+    - aflplusplus_cmplogo1
+    - aflplusplus_cmplogo2
+    - aflplusplus_cmplogo3
+    - aflplusplus
+    - aflplusplus_cmplog_2dictl
+    - aflplusplus_cmplog0
+    - aflplusplus_frida
+    - aflplusplus_frida_huge
+
+- experiment: 2021-10-26-aflpp
+  description: "afl++ cmplog dict"
+  fuzzers:
+    - aflplusplus_cmplog_2dictl
+    - aflplusplus
+    - aflplusplus_cmplog0
+    - aflplusplus_cmplog1
+    - aflplusplus_cmplog2
+    - aflplusplus_cmplog3
+    - aflplusplus_cmplog4
+
+- experiment: 2021-10-22-libafl
+  description: "libaf test"
+  fuzzers:
+    - aflplusplus
+    - libafl
+    - libafl_gsoc
+
+- experiment: 2021-10-22-libafl
+  description: "libaf test"
+  fuzzers:
+    - aflplusplus
+    - libafl
+    - libafl_gsoc
+
+- experiment: 2021-10-22-aflpp
+  description: "afl++ cmplog dict"
+  fuzzers:
+    - aflplusplus_cmplog_2dictl
+    - aflplusplus
+    - aflplusplus_cmplog0
+    - aflplusplus_cmplog1
+    - aflplusplus_cmplog3
+    - aflplusplus_cmplog5
+    - aflplusplus_cmplog7
+    - aflplusplus_cmplog9
+    - aflplusplus_cmplog11
+    - aflplusplus_cmplog13
+    - aflplusplus_cmplog15
+
+- experiment: 2021-10-19-aflpp-rf
+  description: "Benchmark afl++ random fuzzing mode"
+  fuzzers:
+    - aflpp_random_default
+    - aflpp_random_no_favs
+    - aflpp_random_wrs
+    - aflpp_random_wrs_rf
+    - aflpp_random_wrs_rf_rp
+    - aflpp_random_wrs_rp
+
+- experiment: 2021-10-19
+  description: "Compare Zafl to standard source-only and binary-only fuzzers."
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_zafl
+    - aflplusplus_tracepc
+    - aflplusplus_qemu_tracepc
+    - aflplusplus_qemu
+
+- experiment: 2021-10-15-afpp
+  description: "afl++ frida test"
+  fuzzers:
+    - aflplusplus_frida
+    - aflplusplus_frida_huge
+
+- experiment: 2021-10-14
+  description: "Compare Zafl to standard source-only and binary-only fuzzers."
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_zafl
+    - aflplusplus_qemu
+
+- experiment: 2021-10-13-aflpp
+  description: "afl++ cmplog test - rerun"
+  fuzzers:
+    - aflplusplus_cmplog_2dictl
+    - aflplusplus
+    - entropic
+    - honggfuzz
+    - aflplusplus_frida
+    - aflplusplus_frida_huge
+    - aflplusplus_qemu
+
+- experiment: 2021-10-07-aflpp
+  description: "afl++ cmplog test"
+  fuzzers:
+    - aflplusplus_cmplog_2dictl
+    - aflplusplus
+    - entropic
+    - honggfuzz
+
+- experiment: 2021-10-07-aflpp
+  description: "afl++ frida test"
+  fuzzers:
+    - aflplusplus
+    - entropic
+    - honggfuzz
+    - afl
+    - libafl
+    - libafl_gsoc
+    - aflplusplus_frida
+    - aflplusplus_frida_huge
+    - aflplusplus_qemu
+
+- experiment: 2021-09-24-libafl
+  description: "Libafl experiment with GSOC patches"
+  fuzzers:
+    - libafl
+    - libafl_gsoc
+    - aflplusplus
+    - entropic
+    - honggfuzz
+    - afl
+
+- experiment: 2021-09-23-blackboxeffect
+  description: "Compare the fuzzer effectiveness of AFL dumb mode"
+  fuzzers:
+    - afl
+    - pythia_effect_bb
+    - aflplusplus
+    - honggfuzz
+    - libfuzzer
+
+- experiment: 2021-09-08-cloning
+  description: >
+    Benchmark some variants of AFL++ that use different function cloning
+    strategies at whole program level to achieve collision-free context
+    sensitivity. Use different (smaller) sizes to study the impact of the afl map.
+  type: bug
+  fuzzers:
+    - aflplusplus_classic_ctx
+    - aflplusplus_classic_ctx_18
+    - aflplusplus_classic_ctx_20
+    - aflplusplus_classic_ctx_21
+    - cfctx_bottom
+    - cfctx_dataflow_seadsa
+    - cfctx_dataflow_svf
+    - cfctx_randomic
+    - cfctx_params
+    - cfctx_plain
+    - aflplusplus_pcguard
+    - cfctx_dataflow_svf_llc
+    - cfctx_dataflow_seadsa_llc
+    - cfctx_params_llc
+    - cfctx_params_512kb
+    - cfctx_params_768kb
+    
+    
+- experiment: 2021-09-02-datadependency
+  description: "Different AFL instrumentations against afldd"
+  type: bug
+  fuzzers:
+    - afldd
+    - aflpp_vs_dd
+
+- experiment: 2021-09-01-aflpp
+  description: "afl++ regression test"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_dict2file
+    - aflplusplus_dict2file2
+    - entropic
+    - honggfuzz
+
+- experiment: 2021-08-31-cloning
+  description: >
+    Benchmark some variants of AFL++ that use different function cloning
+    strategies at whole program level to achieve collision-free context
+    sensitivity. Use different sizes to study the impact of the afl map.
+  type: bug
+  fuzzers:
+    - aflplusplus_classic_ctx
+    - aflplusplus_classic_ctx_18
+    - aflplusplus_classic_ctx_20
+    - aflplusplus_classic_ctx_23
+    - cfctx_bottom
+    - cfctx_dataflow_seadsa
+    - cfctx_dataflow_svf
+    - cfctx_randomic
+    - cfctx_params
+    - cfctx_plain
+    - aflplusplus_pcguard
+    - cfctx_dataflow_svf_llc
+    - cfctx_dataflow_seadsa_llc
+    - cfctx_params_llc
+    - cfctx_params_512kb
+    - cfctx_params_1mb
+    - cfctx_params_2mb
+    - cfctx_params_4mb
+
+- experiment: 2021-08-26-aflpp
+  description: "afl++ frida bigmap"
+  fuzzers:
+    - aflplusplus_frida_big
+    - aflplusplus_frida_bigbp
+    - aflplusplus_frida_bp
+    - aflplusplus_frida_plain
+    - aflplusplus_qemu
+
+- experiment: 2021-08-24-aflpp
+  description: "afl++ frida bigmap"
+  fuzzers:
+    - aflplusplus_frida_big
+    - aflplusplus_frida_bigbp
+    - aflplusplus_frida_bp
+    - aflplusplus_frida_plain
+    - aflplusplus_qemu
+
+- experiment: 2021-08-19-aflpp
+  description: "afl++ frida bigmap"
+  fuzzers:
+    - aflplusplus_frida_big
+    - aflplusplus_frida
+
+- experiment: 2021-08-17-aflpp
+  description: "afl++ cmplog"
+  fuzzers:
+    - aflplusplus_frida_big
+    - aflplusplus_frida
+
+- experiment: 2021-07-30-random-params
+  description: "Evaluate various random parameters for afl"
+  fuzzers:
+    - afl
+    - afl_no_favs
+    - afl_rf
+    - afl_rf_u
+    - afl_rf_u_wrs
+    - afl_wrs
+    - afl_wrs_rf
+    - afl_wrs_rf_rp
+    - afl_wrs_rp
+
+- experiment: 2021-07-30-aflpp
+  description: "afl++ cmplog"
+  fuzzers:
+    - aflplusplus
+    - honggfuzz
+    - aflplusplus_cmplog_2dict
+    - aflplusplus_cmplog_2dictl
+
+- experiment: 2021-07-07-aflsmartformat
+  description: "aflsmartformat"
+  fuzzers:
+    - aflsmartformat
+    - aflsmart
+    - afl
+- experiment: 2021-07-08-feedback
+  description: "Different feedback mechanisms"
+  type: bug
+  fuzzers:
+    - afldd
+    - aflpp_vs_dd
+- experiment: 2021-07-09-aflpp
+  description: "afl++: frida, cmplog, symbolic"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_cmplog_double
+    - fuzzolic_aflplusplus_z3
+    - fuzzolic_aflplusplus_z3dict
+    - honggfuzz
+    - aflplusplus_313
+    - aflplusplus_cmplog_fullskip
+    - aflplusplus_cmplog_2dict
+    - aflplusplus_frida
+    - aflplusplus_frida_better
+    - aflplusplus_qemu
+    
+- experiment: 2021-07-15-saturated
+  description: "Benchmark a new experimental feature for AFL++ (saturated)"
+  type: bug
+  oss-fuzz-corpus: true
+  fuzzers:
+    - aflplusplus_unusual_disabled
+    - aflplusplus_unusual_enabled
+    
+- experiment: 2021-07-09-cloning
+  description: >
+    Benchmark some variants of AFL++ that use different function cloning
+    strategies at whole program level to achieve collision-free context
+    sensitivity.
+  type: bug
+  fuzzers:
+    - aflplusplus_classic_ctx
+    - cfctx_bottom
+    - cfctx_dataflow_seadsa
+    - cfctx_dataflow_svf
+    - cfctx_randomic
+    - cfctx_params
+    - cfctx_plain
+
+- experiment: 2021-07-05-saturated
+  description: "Benchmark a new experimental feature for AFL++ (saturated)"
+  type: bug
+  oss-fuzz-corpus: true
+  fuzzers:
+    - aflplusplus_unusual_disabled
+    - aflplusplus_unusual_enabled
+
+- experiment: 2021-07-03-symbolic
+  description: "Symbolic solver benchmark."
+  fuzzers:
+    - aflplusplus_cmplog_double
+    - aflplusplus_qemu_double
+    - eclipser_aflplusplus
+    - fuzzolic_aflplusplus_z3
+    - fuzzolic_aflplusplus_fuzzy
+    - symcc_aflplusplus_single
+    - symqemu_aflplusplus
+
+- experiment: 2021-06-27-symbolic
+  description: "Symbolic solver benchmark."
+  fuzzers:
+    - aflplusplus_cmplog_double
+    - aflplusplus_qemu_double
+    - eclipser_aflplusplus
+    - fuzzolic_aflplusplus_z3
+    - fuzzolic_aflplusplus_fuzzy
+    - symcc_aflplusplus_single
+    - symqemu_aflplusplus
+
+- experiment: 2021-06-25-aflprefix
+  description: "Requesting experiments on two new AFL variants."
+  fuzzers:
+    - aflprefix
+    - dropfuzzer
+    - afl
+
+- experiment: 2021-06-24-aflpp-bug
+  description: "Benchmark afl++ cnt variants"
+  type: bug
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_x_default
+    - aflplusplus_fcnt
+    - aflplusplus_flcnt
+    - aflplusplus_lcnt
+    - honggfuzz
+    - entropic
+
+- experiment: 2021-06-24-libafl
+  description: "Libafl experiment"
+  fuzzers:
+    - libafl
+    - aflplusplus
+    - aflplusplus_num
+    - aflplusplus_select
+    - aflplusplus_cmplog_new
+    - aflplusplus_cmplog_old
+    - aflplusplus_frida
+    - aflplusplus_qemu
+    - entropic
+    - honggfuzz
+    - afl
+
+- experiment: 2021-06-23-libafl
+  description: "Libafl experiment"
+  fuzzers:
+    - libafl
+    - aflplusplus
+    - aflplusplus_num
+    - entropic
+    - honggfuzz
+    - afl
+
+- experiment: 2021-06-18-libafl
+  description: "Libafl experiment"
+  fuzzers:
+    - libafl
+    - aflplusplus
+    - aflplusplus_x_default
+    - aflplusplus_num
+    - aflplusplus_select
+    - entropic
+    - honggfuzz
+    - afl
+
+- experiment: 2021-06-17-favored-seeds
+  description: "Evaluating experimental methods to favor seeds"
+  fuzzers:
+    - afl
+    - afl_no_favored
+    - afl_random_favored
+
+- experiment: 2021-06-12-aflpp-bug
+  description: "Benchmark afl++ cnt variants"
+  type: bug
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_fcnt
+    - aflplusplus_flcnt
+    - aflplusplus_lcnt
+    - honggfuzz
+    - entropic
+
+- experiment: 2021-06-16-aflpp
+  description: "Benchmark afl++ and frida regressions"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_313
+    - aflplusplus_311
+    - aflplusplus_frida
+    - aflplusplus_frida_old
+    - aflplusplus_frida_new
+    - aflplusplus_qemu
+    - honggfuzz
+    - entropic
+    - afl
+
+- experiment: 2021-06-12-symccafl-pp
+  description: "Same as 2021-06-02-symccafl-pp but saturated"
+  oss-fuzz-corpus: true
+  fuzzers:
+    - symcc_afl
+    - symcc_afl_single
+    - symcc_aflplusplus
+    - afl_two_instances
+    - afl
+    - aflfast
+    - aflplusplus
+    - aflsmart
+    - entropic
+    - eclipser
+    - fairfuzz
+    - honggfuzz
+    - lafintel
+    - libfuzzer
+    - mopt    
+
+- experiment: 2021-06-12-aflpp
+  description: "Benchmark AFL++ regressions"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_313
+    - aflplusplus_311
+    - aflplusplus_frida
+    - aflplusplus_frida_old
+    - aflplusplus_qemu
+    - aflplusplus_fcnt
+    - aflplusplus_flcnt
+    - aflplusplus_lcnt
+    - honggfuzz
+
+- experiment: 2021-06-11-aflpp-sat
+  description: "Benchmark AFL++ (saturated)"
+  oss-fuzz-corpus: true
+  fuzzers:
+    - aflplusplus_x
+    - aflplusplus_x_c1
+    - aflplusplus_x_c1a
+    - aflplusplus_x_c1t
+    - aflplusplus_x_c2
+    - aflplusplus_x_c2a
+    - aflplusplus_x_c2t
+    - aflplusplus_x_d2f
+    - aflplusplus_x_eh
+    - aflplusplus_x_trim
+    - aflplusplus_x_default
+    - honggfuzz
+    - aflplusplus
+
+- experiment: 2021-06-07-saturated-fix
+  description: "Benchmark a new experimental feature for AFL++ (saturated)"
+  type: bug
+  oss-fuzz-corpus: true
+  fuzzers:
+    - aflplusplus_unusual_disabled
+    - aflplusplus_unusual_enabled
+    - aflplusplus_unusual_partial
+    - aflplusplus_unusual_enabled_early
+    - aflplusplus_unusual_partial_early
+
+- experiment: 2021-06-07-aflpp
+  description: "test threadsafe mode and collect frida cores"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_313
+    - aflplusplus_frida
+    - aflplusplus_threadsafe
+    - aflplusplus_zero
+    - honggfuzz
+
+- experiment: 2021-06-03-aflpp
+  description: "Benchmark a new experimental feature for AFL++"
+  type: bug
+  fuzzers:
+    - aflplusplus_unusual_disabled
+    - aflplusplus_unusual_enabled
+    - aflplusplus_unusual_partial
+
+- experiment: 2021-06-02-symccafl-pp
+  description: >
+               Symcc experiment. The difference between this and 
+               2021-06-01-symccafl is that we now have a version of
+               symcc in combination with aflplusplus. Some bug fixing in
+               symcc has happened, which makes it less prone to crashing.
+               The bug fixing is primarily for the aflplusplus hybrid,
+               since the bugs that were fixed has not been notable
+               (maybe seen once) in the symcc-afl combination.
+               Finally, we have added an increase in the timeout
+               of how often symcc runs, switching it from every
+               5 sec to ever 20 sec. Finally, in the aflplusplus
+               hybrid there is no use of afl-showmap, which means
+               all seeds created by symcc are pushed into the afl
+               queue. This changes the symcc set up as there is no
+               filtering done on the seeds pushed to afl.
+  fuzzers:
+    - symcc_afl
+    - symcc_afl_single
+    - symcc_aflplusplus
+    - afl_two_instances
+    - afl
+    - aflfast
+    - aflplusplus
+    - aflsmart
+    - entropic
+    - eclipser
+    - fairfuzz
+    - honggfuzz
+    - lafintel
+    - libfuzzer
+    - mopt    
+
+- experiment: 2021-06-01-symccafl
+  description: >
+               Symcc-AFL test. The difference between this and 
+               2021-05-29-symccafl is that we now have afl benchmarks
+               that run multiple instances of afl. This is for 
+               comparison purposes since symcc also utilises mutliple
+               processes. The goal is to try and avoid any bias due
+               to more total CPU time.
+  fuzzers:
+    - symcc_afl
+    - symcc_afl_single
+    - afl_two_instances
+    - afl
+    - aflfast
+    - aflplusplus
+    - aflsmart
+    - entropic
+    - eclipser
+    - fairfuzz
+    - honggfuzz
+    - lafintel
+    - libfuzzer
+    - mopt    
+- experiment: 2021-06-02
+  description: "Experiment to compare afl with honggfuzz and libfuzzer"
+  fuzzers:
+    - afl
+    - aflplusplus
+    - honggfuzz
+    - libfuzzer
+    - entropic
+
+- experiment: 2021-05-29-symccafl
+  description: "Symcc-AFL test with most benchmarks"
+  fuzzers:
+    - symcc_afl
+    - afl
+    - aflfast
+    - aflplusplus
+    - aflsmart
+    - entropic
+    - eclipser
+    - fairfuzz
+    - honggfuzz
+    - lafintel
+    - libfuzzer
+    - mopt    
+
+- experiment: 2021-05-25-symccafl
+  description: "Symcc-AFL first test"
+  fuzzers:
+    - symcc_afl
+    - afl
+    - aflfast
+    - aflplusplus
+    - aflsmart
+    - entropic
+    - eclipser
+    - fairfuzz
+    - honggfuzz
+    - lafintel
+    - libfuzzer
+    - mopt    
+
+- experiment: 2021-05-25-cloning
+  description: >
+    Benchmark some variants of AFL++ that use different function cloning
+    strategies at whole program level to achieve collision-free context
+    sensitivity.
+  type: bug
+  fuzzers:
+    - aflplusplus_classic
+    - aflplusplus_classic_ctx
+    - aflplusplus_pcguard
+    - aflplusplus_pcguard_bitcode
+    - aflplusplus_pcguard_ctx
+    - aflplusplus_pcguard_ctx_bfs
+    - aflplusplus_pcguard_ctx_randomic
+    - aflplusplus_pcguard_ctx_uniform
+    - aflplusplus_pcguard_ctx_params
+
+- experiment: 2021-05-25-aflpp
+  description: "afl++ release test"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_312
+    - aflplusplus_311
+    - honggfuzz
+    - entropic
+
+- experiment: 2021-05-14-aflpp
+  description: "afl++ qemu + frida variants"
+  fuzzers:
+    - honggfuzz_qemu
+    - afl_qemu
+    - aflplusplus_frida
+    - aflplusplus_frida_inmem
+    - aflplusplus_qemu
+
+- experiment: 2021-05-09-aflpp
+  description: "afl++ qemu + frida variants"
+  fuzzers:
+    - honggfuzz
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_312
+    - aflplusplus_311
+    - aflplusplus_frida
+    - aflplusplus_frida_inmem
+    - aflplusplus_qemu
+    - aflplusplus_qemu_inmem
+
+- experiment: 2021-04-22-bwhua
+  fuzzers:  
+    - aflplusplus
+    - entropic
+    - fairfuzz
+  description: "A survey for a class project by bwhua"
+
+- experiment: 2021-04-17-aflpp
+  description: "afl++ havoc + qemu mode variants"
+  fuzzers:
+    - honggfuzz
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_312
+    - aflplusplus_311
+    - aflplusplus_qemu_cmplog
+    - aflplusplus_qemu
+    - aflplusplus_qemu_inmem
+    - aflplusplus_qemu_cmplog_inmem
+    - afl_qemu
+    - honggfuzz_qemu
+
+- experiment: 2021-04-14-aflpp
+  description: "afl++ havoc + qemu mode variants"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_312
+    - aflplusplus_311
+    - aflplusplus_havoc
+    - aflplusplus_havoc2
+    - aflplusplus_qemu_cmplog
+    - aflplusplus_qemu_plain
+    - aflplusplus_qemu
+    - aflplusplus_qemu_plaininmem
+
+- experiment: 2021-04-08
+  description: >
+    Test modified strcmp handling that records the full string arguments in the
+    table of recent compares even if they are of different lengths and uses the
+    lengths of both arguments for more targeted mutations derived from TORCW.
+  fuzzers:
+    - libfuzzer
+    - libfuzzer_vartorcw
+
+- experiment: 2021-04-08-bug
+  description: >
+    Test modified strcmp handling that records the full string arguments in the
+    table of recent compares even if they are of different lengths and uses the
+    lengths of both arguments for more targeted mutations derived from TORCW.
+  type: bug
+  fuzzers:
+    - libfuzzer
+    - libfuzzer_vartorcw
+
+- experiment: 2021-03-31
+  description: "afl++ collision free context sensitivity"
+  fuzzers:
+    - aflplusplus_classic
+    - aflplusplus_classic_ctx
+    - aflplusplus_pcguard
+    - aflplusplus_pcguard_ctx
+    - aflplusplus_pcguard_ctx_indirects
+
+- experiment: 2021-03-27-aflpp
+  description: "afl++ havoc+cmplog variants"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_312
+    - aflplusplus_311
+    - aflplusplus_310
+    - aflplusplus_havoc
+    - aflplusplus_havoc2
+    - aflplusplus_havoc3
+    - aflplusplus_havoc60
+    - aflplusplus_cmplog_add
+
+- experiment: 2021-03-23-aflpp
+  description: "afl++ release comparison"
+  fuzzers:
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_flcnt
+    - aflplusplus_optimal
+    - aflplusplus_havoc
+    - aflplusplus
+    - aflplusplus_311
+    - aflplusplus_310
+    - aflplusplus_300
+    - entropic
+    - honggfuzz
+
+- experiment: 2021-03-16-aflpp
+  description: "afl++ release comparison"
+  fuzzers:
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_flcnt
+    - aflplusplus_optimal
+    - aflplusplus
+    - aflplusplus_311
+    - aflplusplus_310
+    - aflplusplus_300
+    - entropic
+    - honggfuzz
+
+- experiment: 2021-05-12-aflpp-bug
+  description: "afl++ ctx on bugs"
+  type: bug
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_classic
+    - aflplusplus_ctx
+    - aflplusplus_ctx1
+    - aflplusplus_ctx2
+    - aflplusplus_ctx3
+    - aflplusplus_ctx4
+
+- experiment: 2021-05-12-aflpp
+  description: "afl++ release comparison"
+  fuzzers:
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_flcnt
+    - aflplusplus_optimal
+    - aflplusplus
+    - aflplusplus_310
+    - aflplusplus_300
+    - entropic
+    - honggfuzz
+
+- experiment: 2021-03-12-aflpp-bug
+  description: "afl++ counter test on bugs"
+  type: bug
+  fuzzers:
+    - aflplusplus_cmplog_introspection
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_flcnt
+    - aflplusplus_optimal_lcnt
+    - aflplusplus_lcnt
+    - aflplusplus_optimal_fcnt
+    - aflplusplus_fcnt
+    - aflplusplus_optimal
+    - aflplusplus
+    - aflplusplus_havoc
+
+- experiment: 2021-03-12-aflpp
+  description: "afl++ ctx + counter test"
+  fuzzers:
+    - aflplusplus_cmplog_introspection
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_flcnt
+    - aflplusplus_optimal_lcnt
+    - aflplusplus_lcnt
+    - aflplusplus_optimal_fcnt
+    - aflplusplus_fcnt
+    - aflplusplus_optimal
+    - aflplusplus
+    - aflplusplus_havoc
+    - aflplusplus_classic
+    - aflplusplus_ctx
+    - aflplusplus_ctx1
+    - aflplusplus_ctx2
+    - aflplusplus_ctx3
+    - aflplusplus_ctx4
+
+- experiment: 2021-03-07-aflpp-bug
+  description: "afl++ cmplog introspection bug"
+  type: bug
+  fuzzers:
+    - aflplusplus_cmplog_introspection
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_flcnt
+    - aflplusplus_optimal
+    - aflplusplus
+    - aflplusplus_havoc
+
+- experiment: 2021-03-07-aflpp
+  description: "afl++ cmplog introspection"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_flcnt
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_cmplog_introspection
+    - aflplusplus_cmplog_fail96
+    - aflplusplus_cmplog_4k
+    - aflplusplus_cmplog_12k
+    - aflplusplus_cmplog_16k
+    - aflplusplus_cmplog_24k
+    - aflplusplus_havoc
+
+- experiment: 2021-03-05-aflpp-bug
+  description: "afl++ cmplog introspection bug"
+  type: bug
+  fuzzers:
+    - aflplusplus_introspection
+    - aflplusplus_introspection2
+    - aflplusplus_cmplog_introspection
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_flcnt
+    - aflplusplus_optimal
+    - aflplusplus
+
+- experiment: 2021-03-05-aflpp
+  description: "afl++ cmplog introspection"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_flcnt
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_introspection
+    - aflplusplus_introspection2
+    - aflplusplus_cmplog_introspection
+
+- experiment: 2021-02-26-aflpp-bug
+  description: "optimal test + cmplog variants bug"
+  type: bug
+  fuzzers:
+    - aflplusplus_introspection
+    - aflplusplus_introspection2
+    - aflplusplus_cmplog_introspection
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_flcnt
+    - aflplusplus_optimal
+    - aflplusplus
+
+- experiment: 2021-02-26-aflpp
+  description: "optimal test + cmplog variants"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_flcnt
+    - aflplusplus_optimal_flcnt
+    - aflplusplus_cmplog_fail96
+    - aflplusplus_cmplog_12k
+    - aflplusplus_introspection
+    - aflplusplus_introspection2
+    - aflplusplus_cmplog_introspection
+
+- experiment: 2021-02-24-aflpp-bug
+  description: "test the buffer boundaries feedback (afl_buf)"
+  type: bug
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_flcnt
+
+- experiment: 2021-02-24-aflpp
+  description: "optimal test + cmplog variants"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_cmplog_per5
+    - aflplusplus_cmplog_per15
+    - aflplusplus_cmplog_fail192
+    - aflplusplus_cmplog_fail256
+    - aflplusplus_cmplog_24k
+    - aflplusplus_weak
+    - aflplusplus_flcnt
+
+- experiment: 2021-02-22-afl-buf
+  description: "test the buffer boundaries feedback (afl_buf)"
+  type: bug
+  fuzzers:
+    - afl
+    - aflplusplus
+    - aflplusplus_optimal
+    - afl_buf
+    - weizz_qemu
+
+- experiment: 2021-02-22-aflpp
+  description: "optimal test + cmplog variants"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_explore
+    - aflplusplus_coe
+    - aflplusplus_arith
+    - aflplusplus_cmplog_per10
+    - aflplusplus_cmplog_per30
+    - aflplusplus_cmplog_fail64
+    - aflplusplus_cmplog_fail128
+    - aflplusplus_cmplog_8k
+    - aflplusplus_u16
+
+- experiment: 2021-02-17-aflpp
+  description: "make optimal optimal again"
+  fuzzers:
+    - aflplusplus_plain
+    - aflplusplus_lto
+    - aflplusplus_lto_2mb
+    - aflplusplus_lto_500mb
+    - aflplusplus_lto_cmplog
+    - aflplusplus_lto_laf
+    - aflplusplus_lto_mopt
+
+- experiment: 2021-02-09-aflpp
+  description: "cmplog variants"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_cmplog
+    - aflplusplus_cmplog_1
+    - aflplusplus_cmplog_max4k
+    - aflplusplus_cmplog_transform
+    - aflplusplus_cmplog_old
+    - aflplusplus_v300c
+
+- experiment: 2021-02-04-aflpp
+  description: "cmplog variants + auto map size"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_cmplog
+    - aflplusplus_cmplog_1
+    - aflplusplus_cmplog_old
+    - aflplusplus_cmplog_max4k
+    - aflplusplus_cmplog_transform
+    - aflplusplus_v300c
+
+- experiment: 2021-02-01-aflpp
+  description: "cmplog variants + auto map size"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_cmplog
+    - aflplusplus_cmplog_1
+    - aflplusplus_cmplog_old
+    - aflplusplus_cmplog_max4k
+    - aflplusplus_cmplog_transform
+    - aflplusplus_v300c
+
+- experiment: 2021-01-30-aflpp-afl
+  description: "cmplog variants"
+  fuzzers:
+    - aflplusplus_cmplog
+    - aflplusplus_cmplog_60
+    - aflplusplus_cmplog_300
+    - aflplusplus_cmplog_select
+    - aflplusplus_cmplog_arith
+    - aflplusplus_cmplog_lowfail
+
+- experiment: 2021-01-27-aflpp-afl
+  description: "plain afl++ vs afl"
+  fuzzers:
+    - aflplusplus_trim
+    - afl
+
+- experiment: 2021-01-27-aflpp-bug
+  description: "afl++ trim vs notrim bug"
+  type: bug
+  fuzzers:
+    - aflplusplus_trim
+    - aflplusplus_notrim
+
+- experiment: 2021-01-25-aflpp
+  description: "afl++ cmplog"
+  fuzzers:
+    - aflplusplus_cmplog
+    - aflplusplus_cmplog12_1
+    - aflplusplus_cmplog12_2
+    - aflplusplus_cmplog12_transform_1
+    - aflplusplus_cmplog12_transform_2
+    - aflplusplus_cmplog123_1
+    - aflplusplus_cmplog123_2
+    - aflplusplus_cmplog123_transform_1
+    - aflplusplus_cmplog123_transform_2
+
+- experiment: 2021-01-22-aflpp
+  description: "afl++ cmplog + notrim"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_notrim
+    - aflplusplus_cmplog_v1
+    - aflplusplus_cmplog_v2
+    - aflplusplus_cmplog_v3
+    - aflplusplus_cmplog_v2_comb
+    - aflplusplus_cmplog_v2_arith
+    - aflplusplus_cmplog_v1_0
+    - aflplusplus_cmplog_v1_5
+    - aflplusplus_cmplog_v1_2
+    - aflplusplus_cmplog_v2_transform
+    - aflplusplus_cmplog_v2_transform2
+
+- experiment: 2021-01-21-aflpp
+  description: "afl++ cmplog + notrim"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_notrim
+    - aflplusplus_cmplog_v1
+    - aflplusplus_cmplog_v2
+    - aflplusplus_cmplog_v3
+    - aflplusplus_cmplog_v2_comb
+    - aflplusplus_cmplog_v2_arith
+    - aflplusplus_cmplog_v1_0
+    - aflplusplus_cmplog_v1_5
+    - aflplusplus_cmplog_v1_2
+    - aflplusplus_cmplog_v2_transform
+    - aflplusplus_cmplog_v2_transform2
+
+- experiment: 2021-01-20-aflpp
+  description: "afl++ cmplog + notrim"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_notrim
+    - aflplusplus_cmplog_stable
+    - aflplusplus_cmplog_dev
+    - aflplusplus_cmplog_v1
+    - aflplusplus_cmplog_v2
+    - aflplusplus_cmplog_v3
+    - aflplusplus_cmplog_v2_comb
+    - aflplusplus_cmplog_v2_arith
+
+- experiment: 2021-01-19-aflpp
+  description: "afl++ cmplog + schedule weighting"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_notrim
+    - aflplusplus_cmplog_stable
+    - aflplusplus_cmplog_dev
+    - aflplusplus_cmplog_v1
+    - aflplusplus_cmplog_v2
+    - aflplusplus_cmplog_v3
+    - aflplusplus_cmplog_v2_comb
+    - aflplusplus_cmplog_v2_arith
+
+- experiment: 2021-01-18-aflpp
+  description: "afl++ cmplog + schedule weighting"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_notrim
+    - aflplusplus_cmplog_stable
+    - aflplusplus_cmplog_dev
+    - aflplusplus_cmplog_v1
+    - aflplusplus_cmplog_v2
+    - aflplusplus_cmplog_v3
+    - aflplusplus_cmplog_v2_comb
+    - aflplusplus_cmplog_v2_arith
+
+- experiment: 2021-01-11-aflpp
+  description: "afl++ cmplog + schedule weighting"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_cmplog
+    - aflplusplus_cmplog_new
+    - aflplusplus_cmplog_variant
+    - aflplusplus_cmplog_variant2
+    - aflplusplus_cmplog_variant3
+    - aflplusplus_schedule
+    - aflplusplus_schedule_explore
+
+- experiment: 2021-01-08-aflpp
+  description: "afl++ cmplog + schedule weighting"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_cmplog
+    - aflplusplus_cmplog_new
+    - aflplusplus_cmplog_variant
+    - aflplusplus_cmplog_variant2
+    - aflplusplus_schedule
+    - aflplusplus_schedule_explore
+
+- experiment: 2021-01-06-aflpp
+  description: "afl++ cmplog + schedule weighting"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_cmplog
+    - aflplusplus_cmplog_new
+    - aflplusplus_cmplog_variant
+    - aflplusplus_schedule
+    - aflplusplus_schedule_explore
+
+- experiment: 2021-01-02
+  description: "afl++ schedule weighting"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_schedule
+    - aflplusplus_schedule_explore
+
+- experiment: 2020-12-29-bug
+  description: "afl++ introspection bug"
+  type: bug
+  fuzzers:
+    - aflplusplus_introspection
+    - aflplusplus_introspection2
+
+- experiment: 2020-12-29
+  description: "afl++ introspection"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_schedule
+    - aflplusplus_optimal
+    - aflplusplus_introspection
+    - aflplusplus_introspection2
+
+- experiment: 2020-12-28-bug
+  description: "afl++ introspection bug"
+  type: bug
+  fuzzers:
+    - aflplusplus_introspection
+    - aflplusplus_introspection2
+
+- experiment: 2020-12-28
+  description: "afl++ introspection"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_schedule
+    - aflplusplus_optimal
+    - aflplusplus_introspection
+    - aflplusplus_introspection2
+
+- experiment: 2020-12-26
+  description: "compare aflplusplus_eclipser vs aflplusplus_double"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_eclipser
+    - aflplusplus_double
+
+- experiment: 2020-12-25
+  description: "best of current state"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - entropic
+    - honggfuzz
+    - eclipser
+    - afl
+    - aflplusplus_eclipser
+
+- experiment: 2020-12-23
+  description: "best of current state"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - entropic
+    - honggfuzz
+    - eclipser
+    - afl
+
+- experiment: 2020-12-22-bug
+  description: "afl++ bugs benchmarking"
+  type: bug
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_bug_laf
+    - aflplusplus_bug_dict
+
+- experiment: 2020-12-18
+  description: "benchmark romu and skim"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_bug_laf
+    - aflplusplus_bug_dict
+    - aflplusplus_skim_romu_fixed
+    - aflplusplus_skim_romu
+    - aflplusplus_romu_fixed
+    - aflplusplus_romu
+    - aflplusplus_skim_fixed
+    - aflplusplus_skim
+
+- experiment: 2020-12-11
+  description: "release comparison: afl++ 2.68c vs 3.00c"
+  fuzzers:
+    - aflplusplus_268c
+    - aflplusplus_300c
+    - aflplusplus_268c_qemu
+    - aflplusplus_300c_qemu
+
+- experiment: 2020-12-09
+  description: "test afl++ schedule changes, 2nd"
+  fuzzers:
+    - aflplusplus_explore
+    - aflplusplus_exploit
+    - aflplusplus_explore_weight
+    - aflplusplus_exploit_weight
+    - aflplusplus_fast_new
+    - aflplusplus_coe_new
+
+- experiment: 2020-12-08
+  description: "test afl++ schedule changes"
+  fuzzers:
+    - aflplusplus_explore
+    - aflplusplus_exploit
+    - aflplusplus_explore_weight
+    - aflplusplus_exploit_weight
+    - aflplusplus_fast_old
+    - aflplusplus_coe_old
+    - aflplusplus_fast_new
+    - aflplusplus_coe_new
+
+- experiment: 2020-12-05
+  description: "AFL++ schedules"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_fast_v2
+    - aflplusplus_fast_v2_branches
+    - aflplusplus_fast_v2_noperf
+    - aflplusplus_fast_v2_nolog
+    - aflplusplus_coe_v2_cutoff
+    - aflplusplus_coe_v2
+
+- experiment: 2020-12-04
+  description: "AFL++ 2.68c qemu mode"
+  fuzzers:
+    - aflplusplus_268c_qemu
+    - aflplusplus_qemu
+    
+- experiment: 2020-12-03
+  description: "AFL++ some fast variants"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_fast_v2
+    - aflplusplus_fast_v2_add
+    - aflplusplus_fast_v2_depth
+    - aflplusplus_fast_v2_cutoff
+    - aflplusplus_fast_v2_lessperf
+    - aflplusplus_fast_v2_moreperf
+    - aflplusplus_fast_v2_fuzzlevel
+
+- experiment: 2020-11-08
+  description: "AFL++ seed selection test + introspection"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_oldnew
+    - aflplusplus_introspection
+
+- experiment: 2020-11-05
+  description: "AFL++ mutator experiments (retry failed 2020-11-02)"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_268c
+    - aflplusplus_havoc
+    - aflplusplus_libfuzzer
+    - aflplusplus_honggfuzz
+    - aflplusplus_mopt
+    - aflplusplus_mopt_both
+    - aflplusplus_noextrasplice
+    - afl
+
+- experiment: 2020-11-04
+  description: "AFL++ mutator experiments (again)"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_mopt
+    - aflplusplus_mopt_both
+    - aflplusplus_noextrasplice
+    - aflplusplus_nofavskip
+    - aflplusplus_introspection
+
+- experiment: 2020-11-02
+  description: "AFL++ mutator experiments"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_268c
+    - aflplusplus_havoc
+    - aflplusplus_libfuzzer
+    - aflplusplus_honggfuzz
+    - aflplusplus_mopt
+    - aflplusplus_mopt_both
+    - aflplusplus_noextrasplice
+    - afl
+
+- experiment: 2020-11-01
+  description: "AFL++ time-based schedules."
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_fast_v1
+    - aflplusplus_fast_v2
+    - aflplusplus_fast_v1_time
+    - aflplusplus_fast_v2_time
+
+- experiment: 2020-10-27
+  description: "Official experiment"
+  fuzzers:
+    - afl
+    - aflfast
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflsmart
+    - entropic
+    - eclipser
+    - fairfuzz
+    - honggfuzz
+    - lafintel
+    - libaflfuzzer
+    - libfuzzer
+    - mopt
+
+
+- experiment: 2020-10-26
+  description: "test new memcache algorithm, hopefully for the last time"
+  fuzzers:
+    - aflplusplus_fixed
+    - aflplusplus_memcache_2mb
+    - aflplusplus_memcache_20mb
+    - aflplusplus_memcache_200mb
+
+
+- experiment: 2020-10-25
+  description: >
+    These are AFLPlusplus experiments. Using Marc's implementation of the Vose
+    alias algorithm to implement v2. Our previous AFL implementation overflowed
+    the AFL 32-bit random number generator (UR) and was highly inefficient,
+    requiring on random number for each element in the queue until one element
+    is chosen. This is also to test an upcoming pull request to reduce the
+    AFL++ memory footprint (u32* -> u8*). Evaluations of v1 points to a lower
+    bound on perf_score. In the previous experiments, there was an integer
+    division error which assigned perf_score=1 to seeds that were already
+    fuzzed. If the perf_score for seeds is below a certain threshold,
+    the overhead from switching between seeds becomes noticeable, resulting in
+    less execs/sec. Generally, with rapid in-process fuzzing (>10k execs/sec),
+    we need to minimize the time spent in the fuzzer. Perf_score allows to
+    distribute some of this overhead across perf_score many execs.
+  fuzzers:
+    - aflplusplus_fast_v1
+    - aflplusplus_fast_v2
+    - aflplusplus_coe_lessmem
+    - aflplusplus_fast_lessmem
+    - aflplusplus_fast_v2_late
+    - aflplusplus_fast_branches_v2
+    - aflplusplus
+
+
+- experiment: 2020-10-24
+  description: >
+    There are mainly two versions; one boosts via perf_score and one that
+    boosts via selection probability (v2). The one that boosts via perf_score
+    spends 4x more time per seed compared to vanilla AFL at the beginning of the
+    campaign when most seeds are still rare. In the previous experiment, it was
+    activated only from the third queue cycle (unsuccessfully). Now, it will
+    reduce perf_score to match vanilla AFL at the beginning, and increase as the
+    seed is chosen more often, but is still rare. For the version that boosts
+    via selection score (v2), the opposite is done. We reduce the probability
+    for seeds that have already been chosen several times. In the previous
+    experiment, There was also a bug in choosing based on hit counts. We have
+    two late boosting schedules that prioritize seeds added later (late). There
+    are two additional schedules; nohandicap disables the handicap bonus (as
+    we already penalize seeds that have been chosen several times) while
+    spliceless reduces energy on splicing even further.
+  fuzzers:
+    - afl_fast_branches_v2_late
+    - afl_fast_branches_v2
+    - afl_fast_v2_nohandicap
+    - afl_fast_v2_spliceless
+    - afl_fast_v2_late
+    - afl_fast_v2
+    - afl_fast
+    - afl
+
+
+- experiment: 2020-10-23-2
+  description: >
+    Experiment aflplusplus_cmplog and aflplusplus_dict2file variants with other fuzzers
+  fuzzers:
+    - aflplusplus_cmplog
+    - aflplusplus_dict2file
+    - afl
+    - aflfast
+    - aflsmart
+    - lafintel
+    - fairfuzz
+    - libfuzzer
+    - entropic
+    - honggfuzz
+
+- experiment: 2020-10-23
+  description: "test new memcache algorithm"
+  fuzzers:
+    - aflplusplus_fixed
+    - aflplusplus_memcache_2mb
+    - aflplusplus_memcache_2mb_old
+    - aflplusplus_memcache_2mb_new
+    - aflplusplus_memcache_20mb
+    - aflplusplus_memcache_200mb
+    - aflplusplus_memcache_200mb_old
+
+- experiment: 2020-10-22-2
+  description: "Fix bugs in v2-schedules and tune others."
+  fuzzers:
+    - afl
+    - afl_fast
+    - afl_fast_v2
+    - afl_fast_agg
+    - afl_fast_quick
+    - afl_fast_branches_v2
+
+- experiment: 2020-10-20
+  description: >
+    The last experiment (afl_fast_nocycle vs afl_fast) where we modified the
+    queue_cycle to facilitate a rapid progression through the queue without
+    penalty was successful. In this experiment, we move the power schedule from
+    the modifying perf_score to modifying the probability to select a seed.
+    For all of afl_fast_*_v2, AFL will not proceed through the queue from
+    first to last seed, but rather jump to the most interesting seeds first.
+    In the last experiment, afl_fast_branches_u8 and afl_fast_branches_u16
+    contained a bug, where we never progressed beyond the first cycle.
+    Trying a fixed version, that is also integrated with the moved fast
+    power schedule.
+  fuzzers:
+    - afl
+    - afl_fast
+    - afl_coe_v2
+    - afl_fast_v2
+    - afl_fast_v2_exp
+    - afl_fast_branches_v2
+     
+- experiment: 2020-10-21
+  description: "further memcache tests with fixed random"
+  fuzzers:
+    - aflplusplus_fixed
+    - aflplusplus_optimal
+    - aflplusplus_memcache_2mb
+    - aflplusplus_memcache_5mb
+    - aflplusplus_memcache_20mb
+    - aflplusplus_memcache_200mb
+
+- experiment: 2020-10-19
+  description: >
+    Experiments from 2020-10-17 showed quite some overhead [afl vs afl_nofast].
+    Checking overhead of xxh3 (afl_xxh3). Reduced overhead of addressing 8MB
+    of memory for hit counts (afl_fast, etc. u8* instead of u32*). After some
+    debugging, I found that schedules that speed up cycles are penalized,
+    because queue_cycle determines a seed's handicap (fuzzed 4x longer) and the
+    size of the mutated blocks in the seed (larger blocks for later cycles).
+    For schedules afl_fast_no_cycles, afl_oldfast_1, afl_fast_branches_u8/16,
+    the current cycle is computed as "fuzzed_paths / queued_paths".
+  fuzzers:
+    - afl
+    - afl_fast
+    - afl_xxh3
+    - afl_oldfast_1
+    - afl_fast_nocycle
+    - afl_fast_branches_u8
+    - afl_fast_branches_u16
+
+- experiment: 2020-10-18
+  description: "further memcache tests and test current vs 2.68c"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_268c
+    - aflplusplus_optimal
+    - aflplusplus_memcache_2mb
+    - aflplusplus_memcache_20mb
+    - aflplusplus_memcache_50mb
+    - aflplusplus_memcache_200mb
+
+- experiment: 2020-10-17
+  description: > 
+    Evaluating several AFL schedules. There are two edge-count-based boosting
+    schedules (afl_branches_u8, afl_branches_16). For each edge, AFL already
+    maintains favourite seeds (the fastest and smallest seed). We choose 
+    identify rarely executed edges and mark those favourites as 'champions',
+    and skip most non-champions as long as some champions exist. There are two
+    FAST schedules that also consider the number of times a seed is fuzzed
+    (afl_old_fast_1, afl_old_fast_025). There are two schedules that further
+    de-prioritize slow seeds (afl_quick, afl_fast_quick). In previous
+    experiments, we observed that AFL doesn't get through the entire queue in
+    23 hours. There are five baselines (afl, afl_shuffled, afl_nofast,
+    afl_fast, and afl_coe) where afl_shuffled starts with a shuffled queue,
+    and afl_nofast uses xxh3 for hashing.
+ 
+  fuzzers:
+    - afl
+    - afl_coe
+    - afl_fast
+    - afl_quick
+    - afl_nofast
+    - afl_shuffled
+    - afl_oldfast_1
+    - afl_fast_quick
+    - afl_oldfast_025
+    - afl_fast_branches_u8
+    - afl_fast_branches_u16
+
+- experiment: 2020-10-16
+  description: "memcache test"
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_memcache_2000mb
+    - aflplusplus_memcache_2mb
+    - aflplusplus_memcache_pre
+
+- experiment: 2020-10-15
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_memcache_2000mb
+    - aflplusplus_memcache_2mb
+    - aflplusplus_memcache_pre
+
+- experiment: 2020-10-13-2
+  fuzzers:
+    - afl
+    - afl_coe
+    - afl_fast_32
+    - afl_oldcoe_16
+    - afl_oldfast_4
+    - afl_oldfast_16
+    - afl_fast_nofav
+    - afl_fast_branches
+    - afl_fast_branches2
+
+- experiment: 2020-10-13
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_explore
+    - aflplusplus_coe_z
+    - aflplusplus_explore_z
+    - aflplusplus_memcache
+    - aflplusplus_memcache_inf
+
+- experiment: 2020-10-12
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_nocycles
+    - aflplusplus_explore
+    - honggfuzz
+    - entropic
+    - entropic_magicbytes
+
+- experiment: 2020-10-10
+  fuzzers:
+    - afl
+    - afl_fast_32
+    - afl_fast_xxh3
+    - afl_fast_branches
+    - afl_fast_spliceless
+    - afl_fast_spliceless2
+    - afl_fast_nohits_srsly
+    - afl_nohandicap_spliceless
+    - afl_nohandicap_spliceless2
+
+- experiment: 2020-10-09
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_nocycles
+    - aflplusplus_memcache
+    - aflplusplus_memcache_inf
+
+- experiment: 2020-10-07
+  fuzzers:
+    - afl
+    - afl_32
+    - afl_fast
+    - afl_fast_32
+    - afl_fast_late_32
+    - afl_fast_coll_32
+    - afl_fast_nohits_32
+    - afl_fast_nohandicap_late_32
+
+- experiment: 2020-10-05-aflfast
+  fuzzers:
+    - aflplusplus_explore
+    - aflplusplus_coe
+    - aflplusplus_coe_24
+    - aflplusplus_coe_48
+    - aflplusplus_coe_64
+    - aflplusplus_fast
+    - aflplusplus_fast_24
+    - aflplusplus_fast_48
+    - aflplusplus_fast_64
+
+- experiment: 2020-10-05
+  fuzzers:
+    - afl
+    - afl_fast
+    - afl_fast_nohandicap
+    - afl_fast_nohandicap_late
+    - afl_fast_nohandicap_late_2
+    - afl_fast_nohandicap_late_s
+    - afl_fast_nohandicap_late_o
+    - afl_fast_nohandicap_late_32
+
+- experiment: 2020-10-01-lightweizz
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_lightweizz
+    - weizz_qemu
+    - aflsmart
+    - afl
+
+- experiment: 2020-10-01
+  fuzzers:
+    - aflplusplus_coe
+    - aflplusplus_fast
+    - aflplusplus_coe_skip
+    - aflplusplus_fast_skip
+    - aflplusplus_coe_nofav
+    - aflplusplus_fast_nofav
+    - aflplusplus_coe_rareoften
+    - aflplusplus_fast_rareoften
+    - aflplusplus_coe_maxfactor
+    - aflplusplus_fast_maxfactor
+
+- experiment: 2020-09-30
+  fuzzers:
+    - aflplusplus_coe
+    - aflplusplus_fast
+    - aflplusplus_rare
+    - aflplusplus_exploit
+    - aflplusplus_explore
+    - aflplusplus_exploit_48
+    - aflplusplus_exploit_64
+    - aflplusplus_explore_min8
+    - aflplusplus_explore_min16
+    - aflplusplus_explore_pow3
+    - aflplusplus_explore_pow5
+    - libaflfuzzer
+
+- experiment: 2020-09-26
+  fuzzers:
+    - aflplusplus_exploit # baseline
+    - aflplusplus_explore # baseline
+    - aflplusplus_coe2
+    - aflplusplus_coe3
+    - aflplusplus_coe4
+    - aflplusplus_fast2
+    - aflplusplus_fast3
+    - aflplusplus_fast4
+    - aflplusplus_coe2_shorthandicap
+    - aflplusplus_fast2_shorthandicap
+
+- experiment: 2020-09-25
+  fuzzers:
+    - libaflfuzzer
+    - aflplusplus_coe3
+    - aflplusplus_exploit
+    - aflplusplus_exploit_12
+    - aflplusplus_exploit_16
+    - aflplusplus_exploit_24
+    - aflplusplus_exploit_28
+    - aflplusplus_explore_pow4
+    - aflplusplus_explore_pow5
+    - aflplusplus_explore
+    - aflplusplus_mmopt
+
+- experiment: 2020-09-24
+  fuzzers:
+    - aflcc
+    - klee
+    - aflcc_no_orig_dict
+
+- experiment: 2020-09-23
+  fuzzers:
+    - aflplusplus_coe3
+    - aflplusplus_fast3
+    - aflplusplus_coe2_fastcount
+    - aflplusplus_fast2_fastcount
+    - aflplusplus_coe2_lateboost
+    - aflplusplus_fast2_lateboost
+    - aflplusplus_coe2_shortcycles
+    - aflplusplus_fast2_shortcycles
+    - aflplusplus_coe2_shorthandicap
+    - aflplusplus_fast2_shorthandicap
+    - aflplusplus_explore_32
+    - aflplusplus_fast2
+    - aflplusplus_coe2
+
+- experiment: 2020-09-22
+  fuzzers:
+    - aflplusplus_coe
+    - aflplusplus_coe2
+    - aflplusplus_exploit
+    - aflplusplus_exploit_28
+    - aflplusplus_exploit_48
+    - aflplusplus_exploit_pow4
+    - aflplusplus_exploit_pow5
+    - aflplusplus_explore
+    - aflplusplus_mmopt
+    - aflplusplus_rare
+
+- experiment: 2020-09-20
+  fuzzers:
+    - aflplusplus_explore_32
+    - aflplusplus_fast2
+    - aflplusplus_coe2
+
+- experiment: 2020-09-19
+  fuzzers:
+    - aflplusplus
+    - afl
+    - libaflfuzzer
+    - libfuzzer
+    - lafintel
+    - aflplusplus_exploit
+    - aflplusplus_exploit_28
+    - aflplusplus_exploit_48
+    - aflplusplus_exploit_64
+    - aflplusplus_exploit_pow5
+    - aflplusplus_exploit_pow7
+    - aflplusplus_explore
+    - aflplusplus_explore2exploit
+    - aflplusplus_seek
+
+- experiment: 2020-09-18
+  fuzzers:
+    - aflsmart
+
+- experiment: 2020-09-16
+  fuzzers:
+    - aflplusplus_coe_12
+    - aflplusplus_coe_24
+    - aflplusplus_coe_32
+    - aflplusplus_exploit_12
+    - aflplusplus_exploit_24
+    - aflplusplus_exploit_32
+    - aflplusplus_explore_12
+    - aflplusplus_explore_24
+    - aflplusplus_explore_32
+    - aflplusplus_explore_min12
+    - aflplusplus_explore_min24
+    - aflplusplus_explore_pow6
+    - aflplusplus_explore_pow8
+    - aflplusplus_fast_12
+    - aflplusplus_fast_24
+    - aflplusplus_fast_32
+
+- experiment: 2020-09-15
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_no_mopt
+    - aflplusplus_coe
+    - aflplusplus_exploit
+    - aflplusplus_explore
+    - aflplusplus_fast
+    - aflplusplus_lin
+    - aflplusplus_mmopt
+    - aflplusplus_quad
+    - aflplusplus_rare
+    - aflplusplus_oldseek
+
+- experiment: 2020-09-11
+  fuzzers:
+    - libfuzzer
+    - libfuzzer_norestart
+    - entropic
+    - entropic_norestart_noexectime
+    - entropic_norestart_yesexectime
+    - aflplusplus
+    - honggfuzz
+
+- experiment: 2020-09-10
+  fuzzers:
+    - aflplusplus_same1
+    - aflplusplus_same2
+    - aflplusplus_same3
+    - aflplusplus_pre3
+    - aflplusplus_pre3_fix
+    - aflplusplus_pre3_fix_p
+    - aflplusplus_optimal_pre3
+    - aflplusplus_optimal_pre3_fix
+    - aflplusplus_optimal_pre3_fix_p
+    - aflplusplus
+    - aflplusplus_fix
+    - aflplusplus_fix_p
+    - aflplusplus_optimal
+    - aflplusplus_optimal_fix
+    - aflplusplus_optimal_fix_p
+
+- experiment: 2020-09-08
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_pre3
+    - aflplusplus_optimal
+    - aflplusplus_optimal_pre3
+    - aflplusplus_pre3_dict
+    - aflplusplus_pre3_simple
+    - aflplusplus_pre3_simple_dict
+    - aflplusplus_qemu
+    - aflplusplus_qemu5
+    - honggfuzz
+    - entropic_after
+    - entropic_keepseed
+
+- experiment: 2020-09-05
+  fuzzers:
+    - aflplusplus_optimal
+    - aflplusplus
+    - aflplusplus_pre3
+    - aflplusplus_pre3_dict
+    - aflplusplus_pre3_cull
+    - aflplusplus_nounstable
+
+- experiment: 2020-09-02
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_nounstable
+    - aflplusplus_qemu
+    - aflplusplus_qemu5
+    - aflplusplus_qemu5_cmplog
+
+- experiment: 2020-08-30
+  fuzzers:
+    - libfuzzer_before
+    - libfuzzer_after
+    - entropic_before
+    - entropic_after
+
+- experiment: 2020-08-25
+  fuzzers:
+    - libfuzzer_magicbytes
+    - entropic_magicbytes
+
+- experiment: 2020-08-21
+  fuzzers:
+    - entropic_keepseed
+
+- experiment: 2020-08-20
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_lto_fixed
+    - aflplusplus_lto
+    - aflplusplus_lto_pcguard
+    - aflplusplus_lto_cmplog
+    - aflplusplus_lto_laf
+    - aflplusplus_classic
+    - entropic_exectime
+
+- experiment: 2020-08-15
+  fuzzers:
+    - libfuzzer_fixcrossover
+    - entropic_fixcrossover
+    - libfuzzer_keepseed
+    - entropic_keepseed
+
+- experiment: 2020-08-14
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_qemu
+    - aflplusplus_same1
+    - aflplusplus_same2
+    - aflplusplus_same3
+    - honggfuzz
+    - weizz
+    - aflplusplus_taint
+    - aflplusplus_laf
+
+- experiment: 2020-08-10
+  fuzzers:
+    - libfuzzer_fixcrossover
+    - entropic_fixcrossover
+
+- experiment: 2020-08-07
+  fuzzers:
+    - aflplusplus_datalenrand
+    - aflplusplus_havoc
+    - aflplusplus_coe
+    - aflplusplus_exploit
+    - aflplusplus_explore
+    - aflplusplus_fast
+    - aflplusplus_lin
+    - aflplusplus_mmopt
+    - aflplusplus_quad
+    - aflplusplus_rare
+    - aflplusplus_seek
+
+- experiment: 2020-08-03
+  fuzzers:
+    - afl
+    - aflfast
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_qemu
+    - afl_qemu
+    - aflsmart
+    - eclipser
+    - entropic
+    - fairfuzz
+    - fastcgs_lm
+    - honggfuzz
+    - honggfuzz_qemu
+    - lafintel
+    - libfuzzer
+    - manul
+    - mopt
+    - libfuzzer_keepseed
+    - entropic_keepseed
+    - libfuzzer_interceptors
+    - entropic_interceptors
+
+- experiment: 2020-07-30
+  fuzzers:
+    - libfuzzer
+    - libfuzzer_interceptors
+    - entropic
+    - entropic_interceptors
+
+- experiment: 2020-07-29
+  fuzzers:
+    - afl
+    - honggfuzz
+    - libfuzzer
+    - entropic
+
+- experiment: 2020-07-27
+  fuzzers:
+    - afl
+    - aflplusplus
+    - honggfuzz
+    - aflplusplus_honggfuzz
+    - aflplusplus_cmplog
+    - aflplusplus_havoc_cmplog
+    - aflplusplus_havoc2
+    - aflplusplus_havoc
+    - aflplusplus_laf
+    - aflplusplus_laf_cmplog
+
+- experiment: 2020-07-25
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_havoc
+    - aflplusplus_hybrid
+    - aflplusplus_honggfuzz
+    - afl
+    - afl_qemu
+    - honggfuzz
+    - honggfuzz_qemu
+    - mopt
+
+- experiment: 2020-07-22
+  fuzzers:
+    - libfuzzer
+
+- experiment: 2020-07-20
+  fuzzers:
+    - libfuzzer
+
+- experiment: 2020-07-13
+  fuzzers:
+    - aflplusplus_ctx_default
+    - aflplusplus_ctx_nosingle
+    - aflplusplus_ctx_nozero
+    - aflplusplus_ctx_nozerosingle
+    - aflplusplus_ngram4
+    - aflplusplus_ngram6
+    - aflplusplus_ngram8
+
+- experiment: 2020-07-09
+  fuzzers:
+    - aflplusplus_lto_dict
+    - aflplusplus_lto
+    - aflplusplus_ltoinstrim
+    - aflplusplus_ctx
+    - aflplusplus_ngram2
+    - aflplusplus_optimal
+    - aflplusplus_qemu
+    - aflplusplus
+
+- experiment: 2020-06-30
+  fuzzers:
+    - aflplusplus_qemu
+    - afl_qemu
+    - honggfuzz_qemu
+    - aflplusplus_optimal_shmem
+
+- experiment: 2020-06-26
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_optimal_shmem
+    - aflplusplus_shmem
+    - entropic
+
+- experiment: 2020-06-18
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_optimal_shmem
+    - aflplusplus_qemu
+    - aflplusplus_shmem
+
+- experiment: 2020-06-17
+  fuzzers:
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_optimal_shmem
+    - aflplusplus_qemu
+    - aflplusplus_shmem
+
+- experiment: 2020-06-12
+  fuzzers:
+    - aflcc
+    - aflplusplus
+    - aflplusplus_optimal
+    - aflplusplus_optimal_shmem
+    - aflplusplus_qemu
+    - aflplusplus_shmem
+    - libfuzzer_nocmp
+    - manul
+
+- experiment: 2020-06-08
+  fuzzers:
+    - aflplusplus
+    - libfuzzer

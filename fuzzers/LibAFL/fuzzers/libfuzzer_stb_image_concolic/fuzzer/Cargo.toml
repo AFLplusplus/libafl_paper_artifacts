@@ -1,0 +1,29 @@
+[package]
+name = "libfuzzer_stb_image_concolic"
+version = "0.7.1"
+authors = ["<ANONYMIZED>", "<ANONYMIZED>", "Julius Hohnerlein"]
+edition = "2021"
+build = "build.rs"
+
+[features]
+default = ["std"]
+std = []
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+debug = true
+
+[dependencies]
+libafl = { path = "../../../libafl/", features = ["concolic_mutation"] }
+libafl_targets = { path = "../../../libafl_targets/", features = ["sancov_pcguard_edges", "sancov_cmplog", "libfuzzer"] }
+clap = { version = "3.0", features = ["derive"]}
+mimalloc = { version = "*", default-features = false }
+
+[build-dependencies]
+cc = { version = "1.0", features = ["parallel"] }
+num_cpus = "1.0"
+cmake = "0.1"
+which = "4.1"
+symcc_libafl = {path = "../../../libafl_concolic/symcc_libafl"}

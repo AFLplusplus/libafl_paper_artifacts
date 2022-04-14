@@ -1,0 +1,27 @@
+commit: d2877d602d3923cb2ce84a04ab14f1b48567426e
+commit_date: 2020-02-18 04:02:00+00:00
+fuzz_target: njs_process_script_fuzzer
+project: njs
+type: bug
+unsupported_fuzzers:
+  - aflcc
+  - afl_qemu
+  - aflplusplus_qemu
+  - aflplusplus_qemu_tracepc
+  - aflplusplus_frida
+  - honggfuzz_qemu
+  - klee
+  - weizz_qemu
+  - lafintel
+  - symcc_afl
+  - symcc_afl_single
+  - symcc_aflplusplus
+  - symcc_aflplusplus_single
+  - aflplusplus_cmplog_double
+  - symcc_aflplusplus_single
+  - eclipser_aflplusplus
+  - aflplusplus_qemu_double
+  - fuzzolic_aflplusplus_z3
+  - symqemu_aflplusplus
+  - fuzzolic_aflplusplus_fuzzy
+  - fuzzolic_aflplusplus_z3dict

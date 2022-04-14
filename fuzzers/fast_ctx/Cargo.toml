@@ -1,0 +1,17 @@
+[package]
+name = "fast_ctx"
+version = "0.0.1"
+authors = ["<ANONYMIZED>", "<ANONYMIZED>"]
+edition = "2021"
+
+[dependencies]
+libafl = { path = "../LibAFL/libafl/" }
+libafl_targets = { path = "../LibAFL/libafl_targets/", features = ["libfuzzer"] }
+# TODO Include it only when building cc
+libafl_cc = { path = "../LibAFL/libafl_cc/" }
+clap = { version = "3.0", features = ["default"] }
+nix = "0.23"
+mimalloc = { version = "*", default-features = false }
+
+[lib]
+crate-type = ["staticlib"]

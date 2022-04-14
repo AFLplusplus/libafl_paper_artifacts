@@ -1,0 +1,20 @@
+[package]
+name = "nautilus"
+version = "0.0.1"
+authors = ["<ANONYMIZED>", "<ANONYMIZED>"]
+edition = "2021"
+
+[dependencies]
+libafl = { path = "../LibAFL/libafl/", features = ["default", "nautilus"] }
+libafl_targets = { path = "../LibAFL/libafl_targets/", features = ["sancov_pcguard_hitcounts", "libfuzzer"] }
+fuzzbench_util = { path = "../fuzzbench_util" }
+serde_json = "1.0.68"
+# TODO Include it only when building cc
+libafl_cc = { path = "../LibAFL/libafl_cc/" }
+nix = "0.23"
+clap = { version = "3.0", features = ["derive"] }
+mimalloc = { version = "*", default-features = false }
+postcard = { version = "0.7", features = ["alloc"] } # no_std compatible serde serialization fromat
+
+[lib]
+crate-type = ["staticlib"]

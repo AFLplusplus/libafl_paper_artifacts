@@ -1,0 +1,39 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+experiment: test-experiment
+trials: 4
+max_total_time: 86400
+cloud_project: fuzzbench
+docker_registry: gcr.io/fuzzbench
+cloud_compute_zone: us-central1-a
+experiment_filestore: gs://experiment-data
+report_filestore: gs://web-reports
+cloud_sql_instance_connection_name: "fuzzbench:us-central1:experiment-db=tcp:5432"
+benchmarks:
+  - benchmark-1
+  - benchmark-2
+fuzzers:
+  - fuzzer-a
+  - fuzzer-b
+git_hash: "git-hash"
+no_seeds: false
+no_dictionaries: false
+oss_fuzz_corpus: false
+description: "Test experiment"
+concurrent_builds: null
+runners_cpus: null
+measurers_cpus: null
+runner_num_cpu_cores: 1
+runner_machine_type: 'n1-standard-1'
