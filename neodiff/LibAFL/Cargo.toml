@@ -1,0 +1,34 @@
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
+debug = true
+
+[workspace]
+members = [
+    "libafl",
+    "libafl_derive",
+    "libafl_cc",
+    "libafl_targets",
+    "libafl_frida",
+    "libafl_qemu",
+    "libafl_sugar",
+    "libafl_concolic/symcc_runtime",
+    "libafl_concolic/symcc_libafl",
+    "libafl_concolic/test/dump_constraints",
+    "libafl_concolic/test/runtime_test",
+    "utils/deexit",
+    "utils/gramatron/construct_automata",
+    "utils/libafl_benches",
+]
+default-members = [
+    "libafl",
+    "libafl_derive",
+    "libafl_cc",
+    "libafl_targets",
+]
+exclude = [
+    "fuzzers",
+    "bindings",
+    "scripts",
+]

@@ -1,0 +1,23 @@
+[package]
+name = "baby_fuzzer"
+version = "0.7.1"
+authors = ["<ANONYMIZED>", "<ANONYMIZED>"]
+edition = "2021"
+
+[features]
+default = ["std"]
+std = []
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+lto = true
+codegen-units = 1
+opt-level = 3
+debug = true
+
+[dependencies]
+libafl = { path = "../../libafl/" }
+postcard = "0.7"
